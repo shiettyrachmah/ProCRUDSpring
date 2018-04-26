@@ -2,6 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { MahasiswaService } from '../../services/mahasiswaservice';
 import { Mahasiswa } from '../../interfaces/mahasiswa';
 import { SearchData } from '../../interfaces/searchData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-mahasiswa',
@@ -12,7 +13,7 @@ export class ListMahasiswaComponent implements OnInit {
   mahasiswa:Mahasiswa[];
   searchData: SearchData = new SearchData();
 
-  constructor(private mahasiswaService:MahasiswaService) {
+  constructor(private mahasiswaService:MahasiswaService, private router:Router) {
 
    }
 
@@ -37,14 +38,13 @@ export class ListMahasiswaComponent implements OnInit {
       })
   }
 
-  onClickEdit(getId){
-    this.mahasiswaService.findAllById(getId).subscribe(
-      data=>{
-        this.mahasiswa = data;
-      console.log(data);
-      },error=>{
-          console.error();
-       });
+  onClickEdit(m){
+    this.mahasiswaService.setter(m);
+    this.router.navigate(["edit"]);
+  }
+
+  onClickAdd(){
+    this.router.navigate(["add"]);
   }
 
   onClickDel(getId) {
@@ -55,6 +55,8 @@ export class ListMahasiswaComponent implements OnInit {
          console.error();
       });
   }
+
+ 
  
 
 }

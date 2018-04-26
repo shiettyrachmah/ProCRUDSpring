@@ -10,6 +10,8 @@ let url: string = 'http://localhost:8080/api/mahasiswa';
 
 @Injectable()
 export class MahasiswaService{
+private mahasiswa:Mahasiswa;
+
     constructor(private http: Http){
 
     }
@@ -20,18 +22,18 @@ export class MahasiswaService{
         .catch(this.handlerError);
     }
 
-    findAllById(getId){ 
-        let header = new Headers({'Content-Type':'application/json', 'Cache-Control':'no-cache'});
-        let options = new RequestOptions({headers:header}); 
-        return this.http.put(url+'/edit/', getId, options)
-        .map(res=>res.json())
-        .catch(this.handlerError); 
-    }
-
     save(mahasiswa: Mahasiswa){
         let header = new Headers({'Content-Type':'application/json', 'Cache-Control':'no-cache'});
         let options = new RequestOptions({headers:header}); 
         return this.http.post(url, mahasiswa, options)
+        .map(res=>res.json())
+        .catch(this.handlerError); 
+    }
+
+    updateData(mahasiswa: Mahasiswa){
+        let header = new Headers({'Content-Type':'application/json', 'Cache-Control':'no-cache'});
+        let options = new RequestOptions({headers:header}); 
+        return this.http.put(url+'/edit', mahasiswa, options)
         .map(res=>res.json())
         .catch(this.handlerError); 
     }
@@ -53,5 +55,14 @@ export class MahasiswaService{
 
     handlerError(error){
         return Observable.throw(error.json() && 'Serve Error');
+    }
+
+    setter(mahasiswa){
+        this.mahasiswa=mahasiswa;
+    }
+   
+    
+    getter(mahasiswa){
+        return this.mahasiswa;
     }
 }

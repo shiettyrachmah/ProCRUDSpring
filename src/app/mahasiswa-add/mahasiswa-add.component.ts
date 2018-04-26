@@ -1,15 +1,15 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Mahasiswa } from '../../interfaces/mahasiswa';
 import { MahasiswaService } from '../../services/mahasiswaservice';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-mahasiswa-insert',
-  templateUrl: './mahasiswa-insert.component.html',
-  styleUrls: ['./mahasiswa-insert.component.css']
+  selector: 'app-mahasiswa-add',
+  templateUrl: './mahasiswa-add.component.html',
+  styleUrls: ['./mahasiswa-add.component.css']
 })
-export class MahasiswaInsertComponent implements OnInit {
-  
+export class MahasiswaAddComponent implements OnInit {
+
   mahasiswa: Mahasiswa = new Mahasiswa();
 
   constructor(
@@ -31,4 +31,4 @@ export class MahasiswaInsertComponent implements OnInit {
       });
   }
 
- }
+}

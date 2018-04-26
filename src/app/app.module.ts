@@ -1,24 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { MahasiswaInsertComponent } from './mahasiswa-insert/mahasiswa-insert.component';
 import { MahasiswaService } from '../services/mahasiswaservice';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { ListMahasiswaComponent } from './list-mahasiswa/list-mahasiswa.component';
 import { RouterModule } from '@angular/router';
+import { MahasiswaAddComponent } from './mahasiswa-add/mahasiswa-add.component';
+import { MahasiswaUpdateComponent } from './mahasiswa-update/mahasiswa-update.component';
 
 export const AppRoute: any = [
   {path:"", component:AppComponent},
   {path:"listdata", component:ListMahasiswaComponent},
-  {path:"insert", component:MahasiswaInsertComponent}
+  {path:"edit", component:MahasiswaUpdateComponent},
+  {path:"add", component:MahasiswaAddComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    MahasiswaInsertComponent,
-    ListMahasiswaComponent
+    ListMahasiswaComponent,
+    MahasiswaAddComponent,
+    MahasiswaUpdateComponent
   ],
   imports: [ 
     HttpModule, //request web
