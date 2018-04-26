@@ -1,0 +1,46 @@
+<br><br><br>
+<div class="container">
+    <div class="row">
+      <div class="col-lg-12" >
+        <h3 class="text-center">DATA MAHASISWA</h3>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 pull-right" >
+            <div class="input-group">
+              <input type="text" class="form-contol" placeholder="search by name" [(ngModel)]="searchData.searchkey">
+              <span class="input-group-btn"><a (click)="onClickSearch()" class="btn btn-info" >Search</a></span>
+          </div>
+        </div>
+      </div>
+      <p>
+    <div class="row">
+        <div class="col-lg-12">
+          <table class="table table-striped">
+            <thead>
+            <tr text="text-center">
+              <td>NO</td>
+              <td>Name</td>
+              <td>Gender</td>
+              <td>Religion</td>
+              <td>Address</td>
+              <td>Phone</td>
+              <td colspan="2">Action</td>
+            </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let m of mahasiswa; let i = index">
+                <td>{{ i+1 }}</td>
+                <td>{{ m.name }}</td>
+                <td>{{ m.gender }}</td>
+                <td>{{ m.religion }}</td>
+                <td>{{ m.address }}</td>
+                <td>{{ m.phone }}</td>
+                 <td><a (click)="onClickDel(m.id)" class="btn btn-info">del</a></td>
+                 <td><a (click)="onClickEdit(m.id)" class="btn btn-info">ediit</a></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+
+    </div>

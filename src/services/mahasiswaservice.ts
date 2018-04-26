@@ -13,37 +13,45 @@ export class MahasiswaService{
     constructor(private http: Http){
 
     }
-
+   
     findAll(){
         return this.http.get(url)
         .map(res=> res.json()) //change request to json
         .catch(this.handlerError);
     }
 
+    findAllById(getId){ 
+        let header = new Headers({'Content-Type':'application/json', 'Cache-Control':'no-cache'});
+        let options = new RequestOptions({headers:header}); 
+        return this.http.put(url+'/edit/', getId, options)
+        .map(res=>res.json())
+        .catch(this.handlerError); 
+    }
+
     save(mahasiswa: Mahasiswa){
-        let header = new Headers({'Content-Type' : 'application/json', 'Cache-Control':'no-cache'});
+        let header = new Headers({'Content-Type':'application/json', 'Cache-Control':'no-cache'});
         let options = new RequestOptions({headers:header}); 
         return this.http.post(url, mahasiswa, options)
-        .map(res=> res.json())
+        .map(res=>res.json())
         .catch(this.handlerError); 
     }
 
     delete(id){
         return this.http.delete(url + '/' + id)
-        .map(res=> res.json())
+        .map(res=>res.json())
         .catch(this.handlerError);
-
     }
 
     search(searchData: SearchData){
-        let header = new Headers({'Content-Type' : 'application/json', 'Cache-Control':'no-cache'});
+        let header = new Headers({'Content-Type':'application/json', 'Cache-Control':'no-cache'});
         let options = new RequestOptions({headers:header}); 
+        //console.log(sData);
         return this.http.post(url+'/search', searchData, options)
-        .map(res=> res.json())
+        .map(res=>res.json())
         .catch(this.handlerError); 
     }
 
     handlerError(error){
-        return Observable.throw(error.json() || 'Serve Error');
+        return Observable.throw(error.json() && 'Serve Error');
     }
 }

@@ -1,3 +1,3 @@
 export class SearchData{
-    searchKey : String;
+    searchkey   : string;
 }
